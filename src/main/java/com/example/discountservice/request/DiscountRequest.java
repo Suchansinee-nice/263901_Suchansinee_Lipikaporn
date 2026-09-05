@@ -8,6 +8,7 @@ import com.example.discountservice.model.OnTop;
 import com.example.discountservice.model.Seasonal;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotEmpty;
 
 import lombok.Data;
@@ -21,4 +22,9 @@ public class DiscountRequest {
     private Coupon coupon;
     private OnTop ontop;
     private Seasonal seasonal;
+    
+    @AssertTrue(message = "ต้องระบุแคมเปญอย่างน้อยหนึ่งอย่าง (coupon, ontop หรือ seasonal)")
+    private boolean isAtLeastOneCampaignPresent() {
+        return coupon != null || ontop != null || seasonal != null;
+    }
 }
