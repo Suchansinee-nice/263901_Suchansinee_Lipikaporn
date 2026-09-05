@@ -22,6 +22,7 @@ public class DiscountRequest {
     @Valid
     private Coupon coupon;
 
+    @Valid
     private OnTop ontop;
 
     @Valid
