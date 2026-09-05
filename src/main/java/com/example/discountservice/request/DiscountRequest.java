@@ -19,7 +19,9 @@ public class DiscountRequest {
     @NotEmpty(message = "items must not be null or empty")
     private List<@Valid Item> items;
 
+    @Valid
     private Coupon coupon;
+
     private OnTop ontop;
 
     @Valid
