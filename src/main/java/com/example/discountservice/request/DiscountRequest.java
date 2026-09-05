@@ -21,6 +21,8 @@ public class DiscountRequest {
 
     private Coupon coupon;
     private OnTop ontop;
+
+    @Valid
     private Seasonal seasonal;
     
     @AssertTrue(message = "ต้องระบุแคมเปญอย่างน้อยหนึ่งอย่าง (coupon, ontop หรือ seasonal)")
