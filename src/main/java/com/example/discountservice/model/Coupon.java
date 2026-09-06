@@ -36,12 +36,14 @@ public class Coupon {
 		return percentage == null;
 	}
 
-	@AssertTrue(message = "percentage must not be null and must be greater than 0 when type is 'Percentage discount'")
+	@AssertTrue(message = "percentage must not be null and must be greater than 0 but not exceed 100 when type is 'Percentage discount'")
 	private boolean isPercentageValid() {
 		if (!"Percentage discount".equals(type)) {
 			return true;
 		}
-		return percentage != null && percentage.compareTo(BigDecimal.ZERO) > 0;
+		return percentage != null
+				&& percentage.compareTo(BigDecimal.ZERO) > 0
+				&& percentage.compareTo(new BigDecimal(100)) <= 0;
 	}
 
 	@AssertTrue(message = "amount must not be sent when type is 'Percentage discount'")
