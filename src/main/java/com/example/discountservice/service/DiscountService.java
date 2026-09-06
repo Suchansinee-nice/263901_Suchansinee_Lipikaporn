@@ -38,17 +38,17 @@ public class DiscountService {
 			}
 			
 			if (request.getCoupon() != null) {
-			    BigDecimal discount = calculateCoupon(request.getCoupon(), runningTotal); // = 60
-			    runningTotal = runningTotal.subtract(discount); // 600 - 60 = 540
+			    BigDecimal discount = calculateCoupon(request.getCoupon(), runningTotal); 
+			    runningTotal = runningTotal.subtract(discount);
 			}
 
 			if (request.getOntop() != null) {
-			    BigDecimal discount = calculateOntop(request.getItems(), request.getOntop(), runningTotal); // = 52.5 (ใช้ items หา clothing = 350)
-			    runningTotal = runningTotal.subtract(discount); // 540 - 52.5 = 487.5  <- ตรงนี้! เอา 540 (ไม่ใช่ 600) มาลบ
+			    BigDecimal discount = calculateOntop(request.getItems(), request.getOntop(), runningTotal); 
+			    runningTotal = runningTotal.subtract(discount); 
 			}
 
 			if (request.getSeasonal() != null) {
-			    BigDecimal discount = calculateSeasonal(request.getSeasonal(), runningTotal); // runningTotal ตอนนี้ = 487.5 อัตโนมัติ ไม่ต้องบอกเอง
+			    BigDecimal discount = calculateSeasonal(request.getSeasonal(), runningTotal);
 			    runningTotal = runningTotal.subtract(discount);
 			}
 			
