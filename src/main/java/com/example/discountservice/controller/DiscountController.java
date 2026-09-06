@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,16 +17,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/discounts")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 @Log4j2
 public class DiscountController {
+	
+	@Autowired
+    private DiscountService discountService;
 
-    private final DiscountService discountService;
-
-    @PostMapping
+	@PostMapping(value = "/calDiscount")
     public ResponseEntity<DiscountResponse> calDiscount(@Valid @RequestBody DiscountRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(discountService.calDiscount(request));
+    	
+    	DiscountResponse response = discountService.calDiscount(request);
+    	
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
 }
